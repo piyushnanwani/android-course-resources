@@ -6,18 +6,33 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.databinding.DataBindingUtil
 import com.example.helloworld.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-//    private val itemList = mutableListOf<String>()
+    private val viewModel = ToDoViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        binding.btnAdd.setOnClickListener {
+            val task = binding.etNewItem.text.toString()
+            if (task.isNotEmpty()) {
+                viewModel.addTodoItem(task)
+                binding.etNewItem.text.clear()
+            }
+        }
+
+        viewModel.todoItems.observe(this, { items ->
+            binding.textView.text = items.joinToString("\n") { it.task }
+        })
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -25,18 +40,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnAdd.setOnClickListener {
-           // 1. First get the text of the text input
-            val text = binding.etNewItem.text.toString()
-            if (text.isNotEmpty()) {
-                binding.etNewItem.text.clear() // clear the text input
-                if (binding.textView.text.equals("No items present")) {
-                    binding.textView.text = ""
-                }
-                    binding.textView.text = binding.textView.text.toString() + "\n" + text
-
-            }
-        }
 
     }
 
