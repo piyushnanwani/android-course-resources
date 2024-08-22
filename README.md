@@ -5,3 +5,5 @@
 4. [Coroutine Example 2](https://github.com/piyushnanwani/android-coroutine-2)
 5. [Coroutine Ex 3](https://github.com/piyushnanwani/android-coroutines-3)
 6. [Storing data offline in Android Apps using RoomDB](https://github.com/piyushnanwani/android-room-ex)
+7. [Location API - GPS App](https://github.com/piyushnanwani/android-gps-example)
+8. [CameraX - Camera App](https://github.com/piyushnanwani/android-camera-app)
