@@ -7,3 +7,4 @@
 6. [Storing data offline in Android Apps using RoomDB](https://github.com/piyushnanwani/android-room-ex)
 7. [Location API - GPS App](https://github.com/piyushnanwani/android-gps-example)
 8. [CameraX - Camera App](https://github.com/piyushnanwani/android-camera-app)
+9. [Rest API Example](https://github.com/piyushnanwani/android-rest-api)
